@@ -1,0 +1,183 @@
+import java.io.*;
+
+public class FileRead {
+	public static void main(String[] args) {
+		//int Cs = 0;
+		// The name of the file to open.
+
+		String fileName = "C:\Users\Geethika\Desktop\Code1.txt";
+
+		// This will reference one line at a time
+		String line = null;
+		String lines = null;
+		String[] row = new String[] {""};
+		int rowSize = row.length;
+
+		String[] ariOperators = new String[] { "try", "else", "{", "}" , ";", "//", "import", "class", "extended"};
+		int aoSize = ariOperators.length;
+
+		//String[] numbers = new String[] {"extended" };
+		//int numSize = numbers.length;
+//
+//		String[] relOperators = new String[] { "==", "!=", ">", "<", ">=", "<=" };
+//		int roSize = relOperators.length;
+//
+//		String[] logicOperators = new String[] { "&&", "||", "!" };
+//		int loSize = logicOperators.length;
+//
+//		String[] assignOperators = new String[] { "+=", "-=", "*=", "/=", ">>>=", "|=", "&=", "<<=", ">>=", "%=",
+//				"^=" };
+//		int asgnSize = assignOperators.length;
+//
+//		String[] bitwiseOperators = new String[] { "|", "^", "~", "<<", ">>", "<<<", ">>>" };
+//		int bitSize = bitwiseOperators.length;
+
+		try {
+			// FileReader reads text files in the default encoding.
+			FileReader fileReader = new FileReader(fileName);
+
+			// Always wrap FileReader in BufferedReader.
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			int count = 1;
+			while ((lines = bufferedReader.readLine()) != null) {
+				int Cs = 0;
+				line = lines.replace("(", " ");
+				line = line.replace(")", " ");
+				line = line.replace(";", " ");
+
+				System.out.print("Line : "+lines + "\t\t\t\t     : ");
+				
+				for (int i = 0; i < rowSize; i++) {
+					if (line.contains(row[i])) {
+						System.out.print(row[i] + " , ");
+						Cs++;
+					}
+				}
+				
+				for (int i = 0; i < aoSize; i++) {
+					if (line.contains(ariOperators[i])) {
+						System.out.print(ariOperators[i] + " , ");
+						Cs = 0;
+					}
+				}
+				
+//				for (int i = 0; i < numSize; i++) {
+//					if (line.contains(numbers[i])) {
+//						System.out.print(numbers[i] + " , ");
+//						Cs = Cs + 1;
+//						//Cs = Ca;
+//					}
+//				}
+
+//				for (int i = 0; i < aoSize; i++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(ariOperators[j])) {
+//							System.out.print(ariOperators[j] + " , ");
+//							Cs--;
+//						}
+//					}
+//				}
+//
+//				for (int k = 0; k < numSize; k++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(numbers[k])) {
+//							System.out.print(numbers[k] + " , ");
+//							Cs++;
+//						}
+//					}
+//				}
+//				for (int k = 0; k < roSize; k++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(relOperators[k])) {
+//							System.out.print(relOperators[k] + " , ");
+//							Cs++;
+//						}
+//					}
+//				}
+//
+//				for (int k = 0; k < loSize; k++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(logicOperators[k])) {
+//							System.out.print(logicOperators[k] + " , ");
+//							Cs++;
+//						}
+//					}
+//				}
+//
+//				for (int k = 0; k < asgnSize; k++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(assignOperators[k])) {
+//							System.out.print(assignOperators[k] + " , ");
+//							Cs++;
+//						}
+//					}
+//				}
+//
+//				for (int k = 0; k < bitSize; k++) {
+//					int a = 0;
+//					String[] split = line.split(" ");
+//
+//					for (a = 0; a < split.length; a++) {
+//						if (split[a].equals(bitwiseOperators[k])) {
+//							System.out.print(bitwiseOperators[k] + " , ");
+//							Cs++;
+//						}
+//					}
+//				}
+//				
+//				if(line.contains("class")) {
+//					
+//				}
+
+				/*
+				 * for (int z = 0; z < operaters.length; z++) { int sizeFor = sizes[z].length();
+				 * String operator = operaters[z]
+				 * 
+				 * for (int k = 0; k < sizeFor; k++) { int a = 0; String[] split =
+				 * line.split(" ");
+				 * 
+				 * for (a = 0; a < split.length; a++) { if
+				 * (split[a].equals(bitwiseOperators[k])) { System.out
+				 * .println("containss bitwiseOperators ....................." +
+				 * bitwiseOperators[k]); } }
+				 * 
+				 * } }
+				 */
+
+				// System.out.println(count + " - " + line + " ");
+				System.out.println("Cs value   ==> " + Cs);
+				count++;
+				
+				
+			}
+			System.out.println("count value   : " + count);
+
+			// Always close files.
+			bufferedReader.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("Unable to open file '" + fileName + "'");
+		} catch (IOException ex) {
+			System.out.println("Error reading file '" + fileName + "'");
+			// Or we could just do this:
+			// ex.printStackTrace();
+		}
+	}
+}
+
+//C:/Users/Dew/Desktop/test.txt
+//FileRead
